@@ -25,7 +25,7 @@ class Category
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Name must not be null")
+     * @Assert\NotBlank(message="Name must not be blank")
      * @ORM\Column(type="string");
      */
     private $name;

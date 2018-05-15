@@ -9,7 +9,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Class Product
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  * @ApiResource(
  *     collectionOperations={"get", "post"},
  *     itemOperations={"get"}

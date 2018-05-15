@@ -12,7 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ApiResource(
  *     collectionOperations={"get", "post"},
- *     itemOperations={"get"}
+ *     itemOperations={"get",
+ *          "productsList"={"route_name"="category_products"}
+ *     }
  *  )
  */
 class Category

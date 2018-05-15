@@ -3,13 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Class Product
  * @ORM\Entity
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get"}
+ * )
  */
 class Product
 {
@@ -43,15 +47,15 @@ class Product
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @Assert\GreaterThanOrEqual(0)
+     * @ORM\Column(type="integer", nullable=true)
+     *
      */
     private $stock;
 
     /**
-     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Category")
-     *
      */
     private $categories;
 
@@ -139,7 +143,7 @@ class Product
     /**
      * @return int
      */
-    public function getStock(): int
+    public function getStock(): ?int
     {
         return $this->stock;
     }
@@ -156,20 +160,21 @@ class Product
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function getCategories(): ArrayCollection
+    public function getCategories()
     {
         return $this->categories;
     }
 
     /**
-     * @param ArrayCollection $categories
+     * @param  $categories
      * @return Product
      */
-    public function setCategories(ArrayCollection $categories): Product
+    public function setCategories($categories): Product
     {
         $this->categories = $categories;
+
         return $this;
     }
 }

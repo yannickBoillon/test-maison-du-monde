@@ -29,7 +29,7 @@ class Product
     /**
      * @var string
      * @Assert\NotBlank(message="Name must not be blank")
-     * @ORM\Column(type="string");
+     * @ORM\Column(type="string", unique=true);
      */
     private $name;
 
@@ -70,17 +70,6 @@ class Product
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return Product
-     */
-    public function setId(int $id): Product
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
